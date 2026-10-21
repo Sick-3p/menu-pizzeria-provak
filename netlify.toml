@@ -1,0 +1,9 @@
+# Il sito si trova nella cartella pizzeria-prova: pubblichiamo quella come radice.
+[build]
+  publish = "pizzeria-prova"
+
+# menu.json va sempre riletto, così le modifiche al menu si vedono subito.
+[[headers]]
+  for = "/menu.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
