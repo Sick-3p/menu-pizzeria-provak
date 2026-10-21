@@ -9,7 +9,7 @@
   "aggiornato": "2026-10-21",
   "categorie": ["Pizze classiche", "Pizze speciali", "Antipasti", "Dolci", "Bevande"],
   "piatti": [
-    {"id": "margherita", "nome": "Margherita", "descrizione": "Pomodoro, mozzarella, basilico", "prezzo": 7.99, "categoria": "Pizze classiche", "allergeni": ["glutine", "latte"], "disponibile": true},
+    {"id": "margherita", "nome": "Margherite", "descrizione": "Pomodoro, mozzarella, basilico", "prezzo": 7.99, "categoria": "Pizze classiche", "allergeni": ["glutine", "latte"], "disponibile": true},
     {"id": "marinara", "nome": "Marinara", "descrizione": "Pomodoro, aglio, origano", "prezzo": 6.0, "categoria": "Pizze classiche", "allergeni": ["glutine"], "disponibile": true},
     {"id": "diavola", "nome": "Diavola", "descrizione": "Pomodoro, mozzarella, salame piccante", "prezzo": 7.5, "categoria": "Pizze classiche", "allergeni": ["glutine", "latte"], "disponibile": true},
     {"id": "capricciosa", "nome": "Capricciosa", "descrizione": "Pomodoro, mozzarella, prosciutto, funghi, carciofi", "prezzo": 9.0, "categoria": "Pizze classiche", "allergeni": ["glutine", "latte"], "disponibile": true},
