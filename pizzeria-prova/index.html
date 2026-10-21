@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pizzeria Prova | Menu e prenotazioni</title>
+<meta name="description" content="Il menu aggiornato di Pizzeria Prova: pizze, antipasti, dolci e bevande. Prenota su WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23D9381E'/><circle cx='50' cy='50' r='34' fill='%23F4B73F'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFF9F0; --ink:#1F1A17; --muted:#6B6058; --tomato:#D9381E; --basil:#2F6B3A; --dough:#F4B73F; --line:#E7DCCB;
+  --display:"Alfa Slab One",Georgia,serif;
+  --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.55;font-size:1.0625rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--tomato);outline-offset:3px}
+.wrap{max-width:860px;margin:0 auto;padding:0 1.25rem}
+.btn{display:inline-block;padding:.9rem 1.5rem;border-radius:.6rem;font-weight:700;text-decoration:none;background:var(--tomato);color:#fff;border:2px solid var(--tomato)}
+.btn:hover{background:var(--ink);border-color:var(--ink)}
+.btn.alt{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.alt:hover{background:var(--ink);color:var(--paper)}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem}
+
+.hero{background:var(--ink);color:var(--paper);padding:3rem 0 3.5rem;overflow:hidden;position:relative}
+.hero::after{content:"";position:absolute;right:-90px;top:-70px;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,var(--dough) 0 52%,var(--tomato) 53% 78%,#B8741C 79% 100%);opacity:.95;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,9vw,5.2rem);line-height:1;margin-bottom:1rem}
+.hero p{max-width:34ch;font-size:1.2rem;margin-bottom:1.6rem;color:#E9DFD2}
+.hero .btn.alt{color:var(--paper);border-color:var(--paper)}
+.hero .btn.alt:hover{background:var(--paper);color:var(--ink)}
+
+.cats{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
+.cats .wrap{display:flex;gap:.5rem;overflow-x:auto;padding-top:.7rem;padding-bottom:.7rem;scrollbar-width:none}
+.cats a{white-space:nowrap;padding:.4rem .9rem;border:2px solid var(--line);border-radius:999px;text-decoration:none;font-weight:500;background:#fff}
+.cats a:hover{border-color:var(--tomato);color:var(--tomato)}
+
+main{padding:2.5rem 0 3rem}
+.cat{margin-bottom:2.8rem}
+.cat h2{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,5vw,2.2rem);color:var(--tomato);margin-bottom:.8rem}
+.piatto{padding:.9rem 0;border-bottom:1px dotted var(--muted)}
+.riga{display:flex;align-items:baseline;gap:.6rem}
+.riga strong{font-size:1.15rem}
+.riga .fill{flex:1}
+.prezzo{font-weight:700;font-variant-numeric:tabular-nums}
+.desc{color:var(--muted);font-size:.98rem}
+.all{display:inline-block;margin-top:.25rem;font-size:.82rem;color:var(--basil);font-weight:500}
+.esaurito strong,.esaurito .prezzo{text-decoration:line-through;opacity:.5}
+.esaurito .tag{display:inline-block;background:var(--ink);color:var(--paper);font-size:.75rem;font-weight:700;padding:.1rem .5rem;border-radius:.3rem;margin-left:.4rem;text-decoration:none}
+.nota{background:#fff;border:1px solid var(--line);border-radius:.8rem;padding:1rem 1.2rem;color:var(--muted);font-size:.95rem}
+#stato{padding:2rem 0;color:var(--muted)}
+
+.info{background:var(--basil);color:#fff;padding:3rem 0}
+.info h2{font-family:var(--display);font-weight:400;font-size:2rem;margin-bottom:1rem}
+.info p{margin-bottom:.4rem}
+.info .actions{margin-top:1.2rem}
+.info .btn{background:var(--dough);border-color:var(--dough);color:var(--ink)}
+.info .btn:hover{background:#fff;border-color:#fff}
+.info .btn.alt{background:transparent;color:#fff;border-color:#fff}
+.info .btn.alt:hover{background:#fff;color:var(--basil)}
+footer{padding:1.5rem 0 2rem;color:var(--muted);font-size:.9rem}
+@media(prefers-reduced-motion:reduce){.hero::after{animation:none}html{scroll-behavior:auto}}
+@media(max-width:560px){.hero::after{width:220px;height:220px;right:-80px;top:-60px;opacity:.5}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1 id="nome">Pizzeria Prova</h1>
+    <p>Impasto lievitato, ingredienti scelti, forno acceso ogni sera.</p>
+    <div class="actions">
+      <a class="btn" id="wa" href="#" rel="noopener">Prenota su WhatsApp</a>
+      <a class="btn alt" id="tel" href="#">Chiama</a>
+    </div>
+  </div>
+</header>
+
+<nav class="cats" aria-label="Categorie del menu"><div class="wrap" id="chips"></div></nav>
+
+<main>
+  <div class="wrap">
+    <div id="stato" role="status">Caricamento del menu...</div>
+    <div id="menu"></div>
+    <p class="nota">Per informazioni su allergeni e intolleranze chiedi sempre al personale prima di ordinare.</p>
+  </div>
+</main>
+
+<section class="info" id="info">
+  <div class="wrap">
+    <h2>Dove e quando</h2>
+    <p id="indirizzo"></p>
+    <p id="orari"></p>
+    <p id="agg" style="opacity:.8;font-size:.9rem"></p>
+    <div class="actions">
+      <a class="btn" id="wa2" href="#" rel="noopener">Scrivici su WhatsApp</a>
+      <a class="btn alt" id="tel2" href="#">Chiama</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">© 2026 <span id="nome2"></span>. P. IVA: da inserire. <a href="#">Privacy policy</a></div></footer>
+
+<script>
+/* Il menu NON è scritto in questa pagina: viene letto da menu.json.
+   Per cambiare piatti, prezzi, orari o telefono basta modificare menu.json. */
+const eur = n => new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(n);
+const el = (tag, cls, text) => { const e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; };
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+
+fetch('menu.json', {cache:'no-store'})
+  .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => {
+    const a = d.attivita;
+    document.title = a.nome + ' | Menu e prenotazioni';
+    ['nome','nome2'].forEach(id => document.getElementById(id).textContent = a.nome);
+    const wa = 'https://wa.me/' + a.whatsapp + '?text=' + encodeURIComponent('Ciao, vorrei prenotare un tavolo');
+    ['wa','wa2'].forEach(id => document.getElementById(id).href = wa);
+    ['tel','tel2'].forEach(id => document.getElementById(id).href = 'tel:' + a.telefono.replace(/\s/g,''));
+    document.getElementById('indirizzo').textContent = a.indirizzo;
+    document.getElementById('orari').textContent = a.orari;
+    if (d.aggiornato) document.getElementById('agg').textContent = 'Menu aggiornato il ' + new Date(d.aggiornato).toLocaleDateString('it-IT');
+
+    const menu = document.getElementById('menu'), chips = document.getElementById('chips');
+    d.categorie.forEach(cat => {
+      const piatti = d.piatti.filter(p => p.categoria === cat);
+      if (!piatti.length) return;
+      const sec = el('section','cat'); sec.id = slug(cat);
+      sec.appendChild(el('h2',null,cat));
+      piatti.forEach(p => {
+        const box = el('div','piatto' + (p.disponibile === false ? ' esaurito' : ''));
+        const riga = el('div','riga');
+        const nome = el('strong',null,p.nome); riga.appendChild(nome);
+        if (p.disponibile === false) riga.appendChild(el('span','tag','Esaurito'));
+        riga.appendChild(el('span','fill'));
+        riga.appendChild(el('span','prezzo',eur(p.prezzo)));
+        box.appendChild(riga);
+        if (p.descrizione) box.appendChild(el('div','desc',p.descrizione));
+        if (p.allergeni && p.allergeni.length) box.appendChild(el('span','all','Allergeni: ' + p.allergeni.join(', ')));
+        sec.appendChild(box);
+      });
+      menu.appendChild(sec);
+      const c = el('a',null,cat); c.href = '#' + slug(cat); chips.appendChild(c);
+    });
+    document.getElementById('stato').remove();
+  })
+  .catch(() => {
+    document.getElementById('stato').textContent = 'Non riesco a caricare il menu. Se stai aprendo il file dal computer, pubblicalo su Netlify oppure chiamaci.';
+  });
+</script>
+</body>
+</html>
